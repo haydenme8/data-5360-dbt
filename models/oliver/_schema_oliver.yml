@@ -15,5 +15,5 @@ models:
     description: "Oliver Sales Fact"
   - name: stg_employee_certifications
     description: "Staging table for employee certifications"
-  - name: face_certification
+  - name: fact_certification
     description: "Certification fact table for each certification for each employee"
