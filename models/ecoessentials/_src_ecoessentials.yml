@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: ecoessentials_landing
+    database: haydenmeek
+    schema: DW_ECOESSENTIALS_ECOESSENTIALS_TRANSACTIONAL_DB
+    tables:
+      - name: customer
+      - name: ORDER
+        quoting:
+          identifier: true
+      - name: order_line
+      - name: product
+      - name: promotional_campaign
+  - name: marketing_landing
+    database: haydenmeek
+    schema: s3_ecoessentials
+    tables:
+      - name: marketingemails
