@@ -9,11 +9,35 @@ models:
     description: "Sales Date Dimension"
   - name: oliver_dim_product
     description: "Product Dimension"
+    columns: 
+      - name: product_key
+        tests:
+          - unique
   - name: oliver_dim_store
     description: "Oliver Store Dimension"
+    columns:
+      - name: store_name
+        tests: 
+          - accepted_values:
+              values: 
+                - "East Gilbert"
+                - "North Skagway"
+                - "Franks Corner"
   - name: fact_sales
     description: "Oliver Sales Fact"
+    columns:
+      - name: product_key
+        description: "A foreign key to the fact table"
+        tests:
+          - not_null
+        
   - name: stg_employee_certifications
     description: "Staging table for employee certifications"
-  - name: face_certification
+  - name: fact_certification
     description: "Certification fact table for each certification for each employee"
+    columns:
+      - name: employee_key
+        tests:
+          - relationships:
+              to: ref('oliver_dim_employee')
+              field: employee_key
