@@ -3,19 +3,71 @@ version: 2
 models:
   - name: eco_dim_time
     description: "Ecoessentials Time Dimension"
+    columns:
+      - name: time_key
+        tests:
+          - not_null
+          
   - name: eco_dim_customer
     description: "Ecoessentials Sales Customer Dimension"
+    columns:
+      - name: customer_key
+        tests:
+           - not_null
+
   - name: eco_dim_date
     description: "Ecoessentials Date Dimension"
+    columns:
+      - name: date_key
+        tests:
+          - unique 
   - name: eco_dim_campaign
     description: "Ecoessentials Email Campaign Dimension"
+    columns:
+      - name: campaign_key
+        tests:
+          - unique
+          
   - name: eco_dim_product
     description: "Ecoessentials Product Dimension"
+    columns:
+      - name: product_key
+        tests:
+          - unique
+          
   - name: eco_dim_email
     description: "Ecoessentials Email Dimension"
+    columns:
+      - name: email_key
+        tests: 
+          - unique
+        
+          
   - name: eco_dim_event
     description: "Ecoessentials Event Dimension"
+    columns:
+      - name: eventtype
+        tests:
+          - accepted_values:
+              values: 
+                - "SENT"
+                - "OPEN"
+                - "CLICK"
   - name: eco_fact_sales
     description: "Ecoessentials Sales Fact Table"
+    columns:
+      - name: product_key
+        tests: 
+          - relationships:
+              to: ref('eco_dim_product')
+              field: product_key
+          
   - name: eco_fact_marketing
     description: "Ecoessentials Marketing Fact Table"
+    columns:
+      - name: campaign_key
+        tests:
+          - relationships:
+              to: ref('eco_dim_campaign')
+              field: campaign_key
+          
